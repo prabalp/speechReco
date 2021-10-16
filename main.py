@@ -1,11 +1,14 @@
 import speech_recognition as sr
 import webbrowser
+import time
 
 r = sr.Recognizer()
 
 
-def audio_data():
+def audio_data(ask=False):
     with sr.Microphone() as source:
+        if ask:
+            print(ask)
         audio = r.listen(source)
         voice = ""
         try:
@@ -20,10 +23,22 @@ def audio_data():
 def respond(voice):
     if 'I am fine' in voice:
         print('Good to hear that')
-    # if 'search' in voice:
-    #     search = audio_data('What do you want to search')
+    if 'search' in voice:
+        search = audio_data('What do you want to search')
+        url = "https:://google.com/search?q=" + search
+        webbrowser.get().open(url)
+        print('Here is what I found for ' + search)
+    if 'find location' in voice:
+        location = audio_data('What is the location')
+        url = "https:://google.nl/maps/place/" + location + '/&amp;'
+        webbrowser.get().open(url)
+        print('Here is the location of ' + location)
+    if 'exit' in voice:
+        exit()
 
 
+time.sleep(1)
 print('Hello how are you?')
-voice = audio_data()
-respond(voice)
+while 1:
+    voice = audio_data()
+    respond(voice)
