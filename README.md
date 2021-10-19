@@ -25,3 +25,11 @@ Start the model in a terminal
 ## Note
 
 If there is any issue installing PyAudio refer https://stackoverflow.com/questions/52283840/i-cant-install-pyaudio-on-windows-how-to-solve-error-microsoft-visual-c-14
+
+or
+
+just go to the additional_package dir and run
+
+```bash
+  pip install PyAudio-0.2.11-cp39-cp39-win_amd64.whl
+```
